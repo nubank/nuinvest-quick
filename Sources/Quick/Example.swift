@@ -94,11 +94,13 @@ final public class Example: _ExampleBase {
                 #if canImport(Darwin)
                 let location = XCTSourceCodeLocation(filePath: file, lineNumber: Int(callsite.line))
                 let sourceCodeContext = XCTSourceCodeContext(location: location)
-                let issue = XCTIssue(
-                    type: .thrownError,
+                let issue = XCTIssueReference(
+                    type: .assertionFailure,
                     compactDescription: description,
-                    sourceCodeContext: sourceCodeContext
-                )
+                    detailedDescription: nil,
+                    sourceCodeContext: sourceCodeContext,
+                    associatedError: nil,
+                    attachments: [])
                 QuickSpec.current.record(issue)
                 #else
                 QuickSpec.current.recordFailure(
