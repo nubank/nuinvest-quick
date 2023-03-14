@@ -98,7 +98,7 @@ final public class Example: _ExampleBase {
                 // As of Xcode 12.0.1, XCTIssue is unavailable even though it is documented:
                 //   https://developer.apple.com/documentation/xctest/xctissue
                 // When building with `swift build`, it is available. Perhaps the xctest overlay behaves differently between the two.
-                let issue = XCTIssue(type: .assertionFailure, compactDescription: description, sourceCodeContext: sourceCodeContext)
+                let issue = XCTIssue(type: .assertionFailure, compactDescription: description)
 
                 #else
                 let issue = XCTIssueReference(
