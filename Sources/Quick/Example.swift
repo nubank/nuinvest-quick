@@ -94,20 +94,14 @@ final public class Example: _ExampleBase {
                 #if canImport(Darwin)
                 let location = XCTSourceCodeLocation(filePath: file, lineNumber: Int(callsite.line))
                 let sourceCodeContext = XCTSourceCodeContext(location: location)
-                #if CI
-                // As of Xcode 12.0.1, XCTIssue is unavailable even though it is documented:
-                //   https://developer.apple.com/documentation/xctest/xctissue
-                // When building with `swift build`, it is available. Perhaps the xctest overlay behaves differently between the two.
-                let issue = XCTIssue(type: .assertionFailure, compactDescription: description, sourceCodeContext: sourceCodeContext)
-
-                #else
+                
                 let issue = XCTIssueReference(
                     type: .assertionFailure,
                     compactDescription: description,
                     detailedDescription: nil,
                     sourceCodeContext: sourceCodeContext,
                     associatedError: nil, attachments: [])
-                #endif
+                
                 QuickSpec.current.record(issue as XCTIssue)
                 #else
                 QuickSpec.current.recordFailure(
