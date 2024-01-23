@@ -102,7 +102,7 @@ final public class Example: _ExampleBase {
                     sourceCodeContext: sourceCodeContext,
                     associatedError: nil, attachments: [])
                 
-                QuickSpec.current.record(issue as XCTIssue)
+                QuickSpec.current.record(issue)
                 #else
                 QuickSpec.current.recordFailure(
                     withDescription: description,
